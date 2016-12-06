@@ -1,15 +1,23 @@
 def benchmark
   start_time = Time.now
-  my_string = yield.reverse
+  my_string = yield
   end_time = Time.now
-  running_time = end_time - start_time
-  puts "my_string.reverse took #{running_time} seconds to run"
+  end_time - start_time
 end
+
+some_string = "chicken fingers" * 13370000
+
+my_time = benchmark {
+  some_string.reverse
+  sleep 1
+}
+
+puts "Benchmark took #{running_time} seconds to run"
 
 # Be careful, pasting this into IRB will take a long time to print.
 # It's a loooong string. :)
-# long_string = "apple"*100000000
-#
-# running_time = benchmark { long_string.reverse }
-#
+
+#Call with...
+# running_time = benchmark { string }
+
 # puts "string.reverse took #{running_time} seconds to run"
